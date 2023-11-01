@@ -27,7 +27,7 @@ To get started with this project, follow these steps:
 
 2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/employee-management-system.git
+   git clone https://github.com/ani21das/employee-management-system.git
    ```
 
 3. **Database Setup:**
