@@ -127,27 +127,5 @@ namespace EmployeeSystem.Controllers
         {
             return _context.Employees.Any(e => e.EmployeeID == id);
         }
-
-        [HttpGet("{id}/department")]
-        public async Task<IActionResult> GetEmployeeDepartment(int id)
-        {
-            try
-            {
-                var employee = await _context.Employees.Include(e => e.Department)
-                                                       .FirstOrDefaultAsync(e => e.EmployeeID == id);
-
-                if (employee == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(employee.Department.DepartmentName);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error: {ex.Message}");
-            }
-        }
-
     }
 }
