@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeManagement.Data;
-using EmployeeManagement.Models;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
@@ -50,7 +46,5 @@ namespace EmployeeManagement.Controllers
                 return BadRequest($"Error: {ex.Message}");
             }
         }
-
-        // You can add more actions as needed, such as CreateDepartment, UpdateDepartment, and DeleteDepartment.
     }
 }

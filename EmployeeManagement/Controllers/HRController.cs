@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeManagement.Data;
-using EmployeeManagement.Models;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
@@ -31,7 +27,6 @@ namespace EmployeeManagement.Controllers
                     return NotFound("Leave request not found.");
                 }
 
-                // Implement leave request approval logic
                 leave.Status = "Approved";
 
                 _context.Entry(leave).State = EntityState.Modified;
@@ -56,8 +51,6 @@ namespace EmployeeManagement.Controllers
                 {
                     return NotFound("Leave request not found.");
                 }
-
-                // Implement leave request rejection logic
                 leave.Status = "Rejected";
 
                 _context.Entry(leave).State = EntityState.Modified;

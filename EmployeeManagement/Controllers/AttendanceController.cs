@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using EmployeeManagement.Data;
 using EmployeeManagement.Models;
-using System;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
@@ -23,14 +21,10 @@ namespace EmployeeManagement.Controllers
         {
             try
             {
-                // Check if the employee exists
                 if (!_context.Employees.Any(e => e.EmployeeID == attendance.EmployeeID))
                 {
                     return BadRequest("Employee not found.");
                 }
-
-                // Implement logic to check and handle attendance status
-
                 _context.Attendance.Add(attendance);
                 await _context.SaveChangesAsync();
                 return Ok("Attendance marked successfully");
@@ -46,7 +40,6 @@ namespace EmployeeManagement.Controllers
         {
             try
             {
-                // Retrieve the attendance status for the specified employee
                 var attendance = await _context.Attendance
                     .Where(a => a.EmployeeID == employeeId)
                     .ToListAsync();

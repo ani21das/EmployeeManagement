@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using EmployeeManagement.Data;
 using EmployeeManagement.Models;
 
@@ -19,20 +16,15 @@ namespace EmployeeManagement.Controllers
             _context = context;
         }
 
-        // Apply for leave
         [HttpPost]
         public async Task<IActionResult> ApplyForLeave(Leave leave)
         {
             try
             {
-                // Check if the employee exists
                 if (!_context.Employees.Any(e => e.EmployeeID == leave.EmployeeID))
                 {
                     return BadRequest("Employee not found.");
                 }
-
-                // Validate the leave request (e.g., date overlaps, valid leave types)
-                // Set the status to "Pending" by default
                 leave.Status = "Pending";
 
                 _context.Leaves.Add(leave);
@@ -44,8 +36,6 @@ namespace EmployeeManagement.Controllers
                 return BadRequest($"Error: {ex.Message}");
             }
         }
-
-        // Check leave status for a specific employee
         [HttpGet("status/{employeeId}")]
         public async Task<IActionResult> CheckLeaveStatus(int employeeId)
         {
@@ -60,7 +50,6 @@ namespace EmployeeManagement.Controllers
             }
         }
 
-        // Update leave request
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLeave(int id, Leave updatedLeave)
         {
@@ -71,14 +60,10 @@ namespace EmployeeManagement.Controllers
 
             try
             {
-                // Check if the leave request exists
                 if (!LeaveExists(id))
                 {
                     return NotFound("Leave request not found.");
                 }
-
-                // Implement leave request update logic (e.g., check if it's possible to update/cancel the leave)
-
                 _context.Entry(updatedLeave).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return Ok("Leave request updated successfully");

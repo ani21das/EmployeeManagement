@@ -35,7 +35,6 @@ namespace EmployeeSystem.Controllers
         {
             try
             {
-                // Check if an employee with the same email already exists
                 if (_context.Employees.Any(e => e.Email == employee.Email))
                 {
                     return BadRequest("An employee with the same email already exists.");
